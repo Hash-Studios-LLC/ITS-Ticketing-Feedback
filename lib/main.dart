@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
-import 'theme/theme.dart';
-import 'pages/home_page.dart';
+import 'package:provider/provider.dart';
+import 'models/feedback_form_state.dart';
+import 'screens/home_screen.dart';
+import 'theme/app_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FeedbackFormState(),
+      child: const HashStudiosFeedbackPortal(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HashStudiosFeedbackPortal extends StatelessWidget {
+  const HashStudiosFeedbackPortal({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: HomePage(),
+      title: 'Hash Studios Feedback Portal',
+      theme: AppTheme.theme,
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
     );
   }
 }
